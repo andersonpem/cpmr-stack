@@ -14,9 +14,13 @@ The complete, lightning fast, PHP stack for your project.
 
 - Redis - For stateless sessions, broadcasting, queues and much more
 
+## 
+
 ## Dockerized out of the box
 
 This project is meant to be used with Docker. No more "it works on my computer". **Everyone's computer uses the same image :)**
+
+## 
 
 ## How to use?
 
@@ -30,11 +34,19 @@ You shall open an issue in the Gitlab project page (especially if you're seeing 
 
 
 
+## Licensing
+
+You know the drill. MIT Licensing. No legal liability. Highly permissive. :)
+
+## 
+
 ## Contributors
 
 **AndersonPEM** Script Creator
 
 (It's lonely in here. Lemme grab some coffee ^^)
+
+### 
 
 ### Support this project
 
