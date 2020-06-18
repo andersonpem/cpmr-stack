@@ -1,4 +1,4 @@
-localhost:80 {
+localhost:80, websockets.test:80 {
 # Define the files but don't use them in some contexts.
 @static {
   file
@@ -38,7 +38,6 @@ root /* /var/www/html/public
 # Other kinds of projects
 # root /* /var/www/html
 
-
 # PHP site through php-fpm:
 @indexFiles {
     not {
@@ -59,6 +58,10 @@ try_files {path} {path}/ /index.php/{query} # Last part is the problem
 }
 php_fastcgi cpmr-php-fpm:9000 {
 	env SERVER_PORT "80"
+	header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    header_up X-Forwarded-For {remote_host}
+    header_up X-Forwarded-Proto {scheme}
 }
 
   file_server
@@ -70,5 +73,16 @@ php_fastcgi cpmr-php-fpm:9000 {
         }
     }  
 
+}
+
+# Websockets
+
+http://localhost:6001, http://websockets.test:6001 {
+   # tls internal
+   @websockets {
+   	header Connection *Upgrade*
+   	header Upgrade websocket
+   }
+   reverse_proxy @websockets cpmr-php-fpm:6001
 }
 
