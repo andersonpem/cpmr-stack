@@ -1,0 +1,11 @@
+code/*
+!/code/.gitkeep
+.idea
+.vscode
+/data/mysql/*
+!/data/mysql/.gitkeep
+/data/redis/*
+!/data/redis/.gitkeep
+redis-secret.txt
+node_modules
+.env

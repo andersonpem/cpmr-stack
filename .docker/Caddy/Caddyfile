@@ -1,0 +1,74 @@
+localhost:80 {
+# Define the files but don't use them in some contexts.
+@static {
+  file
+  path *.ico *.css *.js *.gif *.jpg *.jpeg *.png *.svg *.woff *.ttf
+}
+
+# Cache static files for 60 days
+header @static {
+    Cache-Control max-age=5184000
+    -Server
+    Server "Apache/2"
+    -x-powered-by
+}
+
+
+# Security and Server Flags
+header * {
+    Server "Apache/2"
+    Powered-By "PHP/5.4"
+    # HSTS - Use only in production
+    # Strict-Transport-Security	"max-age=30758400"
+    # X-Content-Type-Options		"nosniff"
+    # X-Frame-Options			"deny"
+    # X-XSS-Protection		"1; mode=block"
+    # Referrer-Policy			"same-origin"
+    -x-powered-by
+}
+
+# TLS: not required in local routing. Enable internal to test local TLS.
+# tls internal
+
+# Enable the static file server.
+# file_server
+
+# Laravel document root
+root /* /var/www/html/public
+# Other kinds of projects
+# root /* /var/www/html
+
+
+# PHP site through php-fpm:
+@indexFiles {
+    not {
+        path */
+    }
+    file {
+        try_files {path}/index.php
+    }
+}
+rewrite @indexFiles {path}/ # No redirect required
+
+# internally rewrite directory URIs to index.php files
+try_files {path} {path}/ /index.php/{query} # Last part is the problem
+
+# proxy any requests for PHP files to backend via FastCGI
+@phpFiles {
+    path *.php
+}
+php_fastcgi cpmr-php-fpm:9000 {
+	env SERVER_PORT "80"
+}
+
+  file_server
+    log {
+        output file /var/log/cpmr-caddy.log {
+            roll_size 2gb
+            roll_keep 5
+            roll_keep_for 2160h
+        }
+    }  
+
+}
+

@@ -1,0 +1,17 @@
+#!/bin/bash
+#!/bin/bash
+echo "========================================================================="
+echo "                          CPMR - Redis                                "
+echo " Script by AndersonPEM (https://github.com/andersonpem)"
+echo ""
+echo " Setting up the server and starting things up... =D"
+echo "========================================================================="
+redispass
+if [ $? -eq 0 ]
+then
+  echo " It seems everything went smoothly"
+else
+echo " Something went wrong. The server won't start"
+  exit 2
+fi
+redis-server /usr/local/etc/redis/redis.conf
