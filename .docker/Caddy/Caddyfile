@@ -71,7 +71,7 @@ php_fastcgi cpmr-php-fpm:9000 {
             roll_keep 5
             roll_keep_for 2160h
         }
-    }  
+    }
 
 }
 
