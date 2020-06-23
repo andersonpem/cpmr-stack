@@ -32,7 +32,6 @@ RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/ins
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null
 RUN sed -i "/ZSH_THEME=\"robbyrussell\"/c ZSH_THEME=\"fishy\"" ~/.zshrc
 RUN sed -i "/plugins=(git)/c plugins=(git docker zsh-autosuggestions ubuntu debian ufw laravel npm npx)" ~/.zshrc
-
 EXPOSE 6001
 #Spawn the PHP-FPM Proccess
 USER root
