@@ -38,6 +38,7 @@ services:
             PHP_INI_UPLOAD_MAX_FILESIZE: 200M
             PHP_INI_MAX_EXECUTION_TIME: 300
             PHP_INI_MEMORY_LIMIT: 1G
+            PHP_INI_DATE__TIMEZONE: "America/Sao_Paulo"
 #           Change this if the document root is not /var/www/html
             APACHE_DOCUMENT_ROOT: /var/www/html/public
 #           Debug only
@@ -58,6 +59,48 @@ services:
             # APACHE_RUN_GROUP: www-data
         extra_hosts:
             - "websockets.test:192.168.1.26"
+#    cpmr-php-worker-listen:
+#        # image: thecodingmachine/php:7.4-v3-fpm
+#        build:
+#            context: .
+#            dockerfile: ./.docker/php-worker/Dockerfile
+#        restart: always
+#        # ports:
+#        #     - 9000:9000
+#        volumes:
+#            - ./code:/var/www/html
+#        environment:
+##           General settings
+#            #Ext enable
+#            PHP_EXTENSIONS: ctype curl dom mbstring intl xml xmlreader xmlwriter redis gd bcmath bz2 yaml
+#            TZ: "America/Sao_Paulo"
+#            # TEMPLATE_PHP_INI: production
+#
+#            #PHP.ini settings
+#            PHP_INI_UPLOAD_MAX_FILESIZE: 200M
+#            PHP_INI_MAX_EXECUTION_TIME: 300
+#            PHP_INI_MEMORY_LIMIT: 1G
+##           Change this if the document root is not /var/www/html
+#            APACHE_DOCUMENT_ROOT: /var/www/html/public
+##           Debug only
+#            PHP_EXTENSION_XDEBUG: 1
+#            PHP_INI_XDEBUG__REMOTE_ENABLE: "on"
+#            PHP_INI_XDEBUG__REMOTE_HOST: host.docker.internal
+#            PHP_INI_XDEBUG__REMOTE_HANDLER: "dbgp"
+#            PHP_INI_XDEBUG__REMOTE_PORT: 9000
+#            PHP_INI_XDEBUG__REMOTE_AUTOSTART: "1"
+#            PHP_INI_XDEBUG__REMOTE_CONNECT_BACK: "on"
+#            PHP_INI_XDEBUG__IDEKEY: "docker"
+#            # PHP_INI_XDEBUG__REMOTE_LOG: "xdebug.log"
+#            PHP_INI_ERROR_REPORTING: E_ALL
+#            #Production Settings
+#            # TEMPLATE_PHP_INI: production
+#            # DOCKER_USER: www-data
+#            # APACHE_RUN_USER: www-data
+#            # APACHE_RUN_GROUP: www-data
+#
+#        extra_hosts:
+#            - "websockets.test:192.168.1.26"
 
 
     cpmr-mysql:

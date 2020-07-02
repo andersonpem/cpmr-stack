@@ -76,12 +76,12 @@ php_fastcgi cpmr-php-fpm:9000 {
 
 # Websockets
 
-http://localhost:6001, http://websockets.test:6001 {
-   # tls internal
-   @websockets {
-   	header Connection *Upgrade*
-   	header Upgrade websocket
-   }
-   reverse_proxy @websockets cpmr-php-fpm:6001
-}
+# http://localhost:6001, http://websockets.test:6001 {
+#    # tls internal
+#    @websockets {
+#    	header Connection *Upgrade*
+#    	header Upgrade websocket
+#    }
+#    reverse_proxy @websockets cpmr-php-fpm:6001
+# }
 
