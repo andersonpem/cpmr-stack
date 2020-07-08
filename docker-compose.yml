@@ -130,10 +130,10 @@ services:
             - "6379:6379"
         secrets:
             - redis_secret
-    cpmr-adminer:
-        image: adminer
-        ports:
-            - 8080:8080
+    # cpmr-adminer:
+    #     image: adminer
+    #     ports:
+    #         - 8080:8080
 #    redisinsight:
 #        image: redislabs/redisinsight
 #        # volumes:
