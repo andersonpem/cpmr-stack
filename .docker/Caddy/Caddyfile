@@ -1,4 +1,4 @@
-localhost:80, websockets.test:80 {
+localhost:80 {
 # Define the files but don't use them in some contexts.
 @static {
   file
@@ -8,22 +8,27 @@ localhost:80, websockets.test:80 {
 # Cache static files for 60 days
 header @static {
     Cache-Control max-age=5184000
+    # Remove the actual server's name
     -Server
     Server "Apache/2"
+    # Remove the PHP
     -x-powered-by
 }
 
 
 # Security and Server Flags
 header * {
+    # Let's fake some data to confuse attackers
+    -Server
     Server "Apache/2"
     Powered-By "PHP/5.4"
-    # HSTS - Use only in production
+    # ****** Security - Use in Production ******
     # Strict-Transport-Security	"max-age=30758400"
     # X-Content-Type-Options		"nosniff"
     # X-Frame-Options			"deny"
     # X-XSS-Protection		"1; mode=block"
     # Referrer-Policy			"same-origin"
+    # ****** End Security ******
     -x-powered-by
 }
 
