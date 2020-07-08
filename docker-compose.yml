@@ -54,7 +54,7 @@ services:
             PHP_INI_ERROR_REPORTING: E_ALL
             #Production Settings
             # TEMPLATE_PHP_INI: production
-            # DOCKER_USER: www-data
+            DOCKER_USER: docker
             # APACHE_RUN_USER: www-data
             # APACHE_RUN_GROUP: www-data
 #    cpmr-php-worker-listen:
