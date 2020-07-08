@@ -10,7 +10,7 @@ services:
         ports:
             - 80:80
             - 443:443
-            - 6001:6001
+            # - 6001:6001
         volumes:
             - ./.docker/Caddy/Caddyfile:/etc/caddy/Caddyfile:rw
             - ./code:/var/www/html
@@ -57,8 +57,6 @@ services:
             # DOCKER_USER: www-data
             # APACHE_RUN_USER: www-data
             # APACHE_RUN_GROUP: www-data
-        extra_hosts:
-            - "websockets.test:192.168.1.26"
 #    cpmr-php-worker-listen:
 #        # image: thecodingmachine/php:7.4-v3-fpm
 #        build:
