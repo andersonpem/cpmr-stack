@@ -8,22 +8,27 @@ localhost:80 {
 # Cache static files for 60 days
 header @static {
     Cache-Control max-age=5184000
+    # Remove the actual server's name
     -Server
     Server "Apache/2"
+    # Remove the PHP
     -x-powered-by
 }
 
 
 # Security and Server Flags
 header * {
+    # Let's fake some data to confuse attackers
+    -Server
     Server "Apache/2"
     Powered-By "PHP/5.4"
-    # HSTS - Use only in production
+    # ****** Security - Use in Production ******
     # Strict-Transport-Security	"max-age=30758400"
     # X-Content-Type-Options		"nosniff"
     # X-Frame-Options			"deny"
     # X-XSS-Protection		"1; mode=block"
     # Referrer-Policy			"same-origin"
+    # ****** End Security ******
     -x-powered-by
 }
 
@@ -37,7 +42,6 @@ header * {
 root /* /var/www/html/public
 # Other kinds of projects
 # root /* /var/www/html
-
 
 # PHP site through php-fpm:
 @indexFiles {
@@ -59,6 +63,10 @@ try_files {path} {path}/ /index.php/{query} # Last part is the problem
 }
 php_fastcgi cpmr-php-fpm:9000 {
 	env SERVER_PORT "80"
+	header_up Host {host}
+    header_up X-Real-IP {remote_host}
+    header_up X-Forwarded-For {remote_host}
+    header_up X-Forwarded-Proto {scheme}
 }
 
   file_server
@@ -68,7 +76,17 @@ php_fastcgi cpmr-php-fpm:9000 {
             roll_keep 5
             roll_keep_for 2160h
         }
-    }  
-
+    }
 }
+
+# Websockets
+
+# http://localhost:6001, http://websockets.test:6001 {
+#    # tls internal
+#    @websockets {
+#    	header Connection *Upgrade*
+#    	header Upgrade websocket
+#    }
+#    reverse_proxy @websockets cpmr-php-fpm:6001
+# }
 

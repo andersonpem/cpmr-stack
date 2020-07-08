@@ -1,5 +1,5 @@
 # DEVELOPMENT REQUIRES NODE
-FROM thecodingmachine/php:7.4-v3-fpm-node12 as cpmr-php-fpm
+FROM thecodingmachine/php:7.4-v3-fpm-node12 as cpmr-php-worker
 # PRODUCTION DOES NOT
 #FROM thecodingmachine/php:7.4-v3 as cpmr-php-fpm
 LABEL maintainer="Anderson Souza (https://github.com/andersonpem)"
@@ -35,3 +35,7 @@ RUN sed -i "/plugins=(git)/c plugins=(git docker zsh-autosuggestions ubuntu debi
 EXPOSE 6001
 #Spawn the PHP-FPM Proccess
 USER root
+COPY ./.docker/php-worker/worker.sh /usr/bin/worker
+RUN chmod +x /usr/bin/worker
+USER docker
+ENTRYPOINT ["worker"]
