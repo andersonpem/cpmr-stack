@@ -16,6 +16,7 @@ services:
         environment: 
             REMOTE_PORT: 80
             TZ: "America/Sao_Paulo"
+            CADDY_SERVER_HOST: ${CADDY_SERVER_HOST}
     cpmr-php-fpm:
         # image: thecodingmachine/php:7.4-v3-fpm
         build: 
