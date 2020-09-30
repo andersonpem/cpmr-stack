@@ -43,7 +43,7 @@ header * {
 # file_server
 
 # Laravel document root
-root /* /var/www/html/public
+root /* {env.DOCUMENT_ROOT}
 # Other kinds of projects
 # root /* /var/www/html
 
