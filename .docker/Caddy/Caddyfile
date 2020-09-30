@@ -1,4 +1,8 @@
-localhost:80 {
+{
+  auto_https disable_redirects
+}
+
+{env.CADDY_SERVER_HOST}:80 {
 # Define the files but don't use them in some contexts.
 @static {
   file
