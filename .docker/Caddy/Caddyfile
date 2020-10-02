@@ -67,7 +67,7 @@ try_files {path} {path}/ /index.php/{query} # Last part is the problem
 }
 php_fastcgi cpmr-php-fpm:9000 {
 	env SERVER_PORT "80"
-	header_up Host {host}
+	header_up Host {http.request.hostport}
     header_up X-Real-IP {remote_host}
     header_up X-Forwarded-For {remote_host}
     header_up X-Forwarded-Proto {scheme}
