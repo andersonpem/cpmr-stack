@@ -1,8 +1,9 @@
 version: "3.6"
+# Todo: Build everything in a CI/CD environment
 services:
     # The caddy server is a lightning fast web server written in Go.
     cpmr-caddy:
-        # image: registry.gitlab.com/andersonpem/caddy-php-fpm-mysql-redis:caddy-latest
+        # image: registry.gitlab.com/andersonpem/cpmr-stack/cpmr-caddy:0.1.0
         build:
             context: .
             dockerfile: ./.docker/Caddy/Dockerfile
@@ -19,7 +20,7 @@ services:
             CADDY_SERVER_HOST: ${CADDY_SERVER_HOST}
             DOCUMENT_ROOT: ${DOCUMENT_ROOT}
     cpmr-php-fpm:
-        # image: thecodingmachine/php:7.4-v3-fpm
+        # image: registry.gitlab.com/andersonpem/cpmr-stack/cpmr-php-fpm:0.1.0
         build: 
             context: .
             dockerfile: ./.docker/php-fpm/Dockerfile
@@ -74,7 +75,7 @@ services:
             - ${TZ}
         command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     cpmr-redis:
-        # image: redis:latest
+        # image: registry.gitlab.com/andersonpem/cpmr-stack/cpmr-redis:0.1.0
         build: 
             context: .
             dockerfile: ./.docker/Redis/Dockerfile
