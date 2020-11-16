@@ -1,4 +1,4 @@
-FROM caddy:2.1.0-beta.1 AS cpmr-caddy
+FROM caddy:2.2.1 AS cpmr-caddy
 LABEL maintainer="Anderson Souza <https://gitlab.com/andersonpem https://github.com/andersonpem>"
 USER root
 RUN apk add bash zsh perl git nano tzdata > /dev/null
