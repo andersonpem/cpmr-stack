@@ -20,7 +20,7 @@ services:
             CADDY_SERVER_HOST: ${CADDY_SERVER_HOST}
             DOCUMENT_ROOT: ${DOCUMENT_ROOT}
     cpmr-php-fpm:
-        # image: registry.gitlab.com/andersonpem/cpmr-stack/cpmr-php-fpm:0.1.0
+        # image: registry.gitlab.com/andersonpem/cpmr-stack/cpmr-php-fpm:0.2.0
         build: 
             context: .
             dockerfile: ./.docker/php-fpm/Dockerfile
