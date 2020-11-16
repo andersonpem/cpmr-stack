@@ -7,6 +7,9 @@ LABEL maintainer="Anderson Souza (https://github.com/andersonpem)"
 ARG CONTAINER_CONTEXT=dev
 USER root
 RUN apt update && apt install bash zsh wget perl git nano -y 
+USER docker
+RUN composer global remove hirak/prestissimo
+USER root
 RUN composer self-update 2.0.7
 RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" --unattended > /dev/null
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null
@@ -28,8 +31,7 @@ RUN if [ ${CONTAINER_CONTEXT} = prod ]; then \
     sed -i "/plugins=(git)/c plugins=(git docker zsh-autosuggestions ubuntu debian ufw laravel npm npx)" ~/.zshrc \
 ;fi
 
-USER docker
-RUN composer global remove hirak/prestissimo
+
 RUN sh -c "$(wget https://raw.github.com/robbyrussell/oh-my-zsh/master/tools/install.sh -O -)" --unattended > /dev/null
 RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.oh-my-zsh/custom}/plugins/zsh-autosuggestions > /dev/null
 RUN sed -i "/ZSH_THEME=\"robbyrussell\"/c ZSH_THEME=\"fishy\"" ~/.zshrc
