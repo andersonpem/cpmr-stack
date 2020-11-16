@@ -69,7 +69,7 @@ services:
             - ${TZ}
         command: ['mysqld', '--character-set-server=utf8mb4', '--collation-server=utf8mb4_unicode_ci']
     cpmr-redis:
-        # image: registry.gitlab.com/andersonpem/cpmr-stack/cpmr-redis:0.1.0
+        # image: registry.gitlab.com/andersonpem/cpmr-stack/redis:0.1.0
         build: 
             context: .
             dockerfile: ./.docker/Redis/Dockerfile
