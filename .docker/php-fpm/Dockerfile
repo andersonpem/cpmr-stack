@@ -32,7 +32,10 @@ RUN git clone https://github.com/zsh-users/zsh-autosuggestions ${ZSH_CUSTOM:-~/.
 RUN sed -i "/ZSH_THEME=\"robbyrussell\"/c ZSH_THEME=\"fishy\"" ~/.zshrc
 RUN sed -i "/plugins=(git)/c plugins=(git docker zsh-autosuggestions ubuntu debian ufw laravel npm npx)" ~/.zshrc
 
-
 EXPOSE 6001
-#Spawn the PHP-FPM Proccess
+
 USER root
+COPY .docker/php-fpm/laravelpermissions.sh /usr/local/bin/laravelpermissions
+RUN chmod +x /usr/local/bin/laravelpermissions
+
+#Spawn the PHP-FPM Proccess
