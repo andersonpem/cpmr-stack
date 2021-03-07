@@ -53,6 +53,8 @@ services:
             DOCKER_USER: ${DOCKER_USER}
             APACHE_RUN_USER: ${APACHE_RUN_USER}
             APACHE_RUN_GROUP: ${APACHE_RUN_GROUP}
+            # PHPStorm Settings
+            PHP_IDE_CONFIG: ${PHP_IDE_CONFIG}
 
     cpmr-mysql:
         image: mysql:8
